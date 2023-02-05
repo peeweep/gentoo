@@ -1023,18 +1023,17 @@ app-office/texmacs
 # Also, b43 wiki page says to use 5.100.138. Bug #541080.
 >=sys-firmware/b43-firmware-6.30.163.46
 
-# Andreas K. Hüttel <dilfridge@gentoo.org> (2017-05-21)
-# (and others, updated later)
-# These old versions of toolchain packages (binutils, gcc, glibc) are no
-# longer officially supported and are not suitable for general use. Using
-# these packages can result in build failures (and possible breakage) for
-# many packages, and may leave your system vulnerable to known security
-# exploits.
-# If you still use one of these old toolchain packages, please upgrade (and
-# switch the compiler / the binutils) ASAP. If you need them for a specific
-# (isolated) use case, feel free to unmask them on your system.
-<sys-libs/glibc-2.36-r5
-<sys-devel/binutils-2.38
+# hold gcc-10.2.0
+>sys-devel/gcc-10.2.0
+<sys-devel/gcc-10.2.0
+
+# hold glibc-2.33-r14
+>sys-libs/glibc-2.33
+<sys-libs/glibc-2.33
+
+# hold binutilss-2.35
+>sys-devel/binutils-2.35
+<sys-devel/binutils-2.35
 
 # Michael Orlitzky <mjo@gentoo.org> (2017-01-07)
 # This package has some dangerous quality and security issues, but
