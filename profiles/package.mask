@@ -1023,15 +1023,15 @@ app-office/texmacs
 # Also, b43 wiki page says to use 5.100.138. Bug #541080.
 >=sys-firmware/b43-firmware-6.30.163.46
 
-# hold gcc-10.2.0
+# hold gcc-10.2.0, mask other versions
 >sys-devel/gcc-10.2.0
 <sys-devel/gcc-10.2.0
 
-# hold glibc-2.33-r14
+# hold glibc-2.33-r14, mask other versions
 >sys-libs/glibc-2.33
 <sys-libs/glibc-2.33
 
-# hold binutilss-2.35
+# hold binutilss-2.35, mask other versions
 >sys-devel/binutils-2.35
 <sys-devel/binutils-2.35
 
