@@ -20,10 +20,15 @@ BDEPEND="
 	app-arch/xz-utils
 	dev-lang/perl"
 
-src_install() {
-	kernel-2_src_install
+src_unpack() {
+	# avoid kernel-2_src_unpack
+	default
+}
 
-	find "${ED}" \( -name '.install' -o -name '*.cmd' \) -delete || die
-	# delete empty directories
-	find "${ED}" -empty -type d -delete || die
+src_install() {
+	mkdir -p "${ED}"$(kernel_header_destdir)
+	cp -r include/* "${ED}"$(kernel_header_destdir)/
+
+	# let other packages install some of these headers
+	rm -rf "${ED}"${ddir}/scsi || die #glibc/uclibc/etc...
 }
