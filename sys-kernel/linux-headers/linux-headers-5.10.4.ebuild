@@ -11,10 +11,7 @@ detect_version
 PATCH_PV="5.10" # to ease testing new versions against not existing patches
 PATCH_VER="1"
 THEAD_COMMIT="23fdf1028b63bb52ec0900f0021617e50c1f9af0"
-SRC_URI="https://github.com/T-head-Semi/xuantie-gnu-toolchain/archive/${THEAD_COMMIT}.zip -> ${P}.zip
-	${PATCH_VER:+mirror://gentoo/gentoo-headers-${PATCH_PV}-${PATCH_VER}.tar.xz}
-	${PATCH_VER:+https://dev.gentoo.org/~sam/distfiles/gentoo-headers-${PATCH_PV}-${PATCH_VER}.tar.xz}
-"
+SRC_URI="https://github.com/T-head-Semi/xuantie-gnu-toolchain/archive/${THEAD_COMMIT}.zip -> ${P}.zip"
 S="${WORKDIR}/xuantie-gnu-toolchain-${THEAD_COMMIT}/linux-headers"
 
 KEYWORDS="~riscv"
@@ -22,27 +19,6 @@ KEYWORDS="~riscv"
 BDEPEND="
 	app-arch/xz-utils
 	dev-lang/perl"
-
-[[ -n ${PATCH_VER} ]] && PATCHES=( "${WORKDIR}"/${PATCH_PV} )
-
-src_unpack() {
-	# avoid kernel-2_src_unpack
-	default
-}
-
-src_prepare() {
-	# TODO: May need forward porting to newer versions
-	use elibc_musl && PATCHES+=(
-		"${FILESDIR}"/${PN}-5.10-Use-stddefs.h-instead-of-compiler.h.patch
-	)
-
-	# avoid kernel-2_src_prepare
-	default
-}
-
-src_test() {
-	emake headers_check "${KERNEL_MAKEOPTS[@]}"
-}
 
 src_install() {
 	kernel-2_src_install
