@@ -80,15 +80,27 @@ src_unpack() {
 		EGIT_CHECKOUT_DIR=${S}
 		git-r3_src_unpack
 	else
-		unpack ${P}.tar.xz
+		unpack ${P}.tar.gz
+		S=${WORKDIR}/binutils-gdb-tags-THead-${THEAD_VER}
 
 		cd "${WORKDIR}" || die
-		unpack binutils-${PATCH_BINUTILS_VER}-patches-${PATCH_VER}.tar.xz
+		# unpack binutils-${PATCH_BINUTILS_VER}-patches-${PATCH_VER}.tar.xz
 	fi
 
 	cd "${WORKDIR}" || die
 	mkdir -p "${MY_BUILDDIR}" || die
 }
+
+PATCHES=(
+	"${FILESDIR}"/patch/0001-Set-version-to-2.35.0-and-enable-development.patch
+	"${FILESDIR}"/patch/0003-Gentoo-gold-ld-add-support-for-poisoned-system-direc.patch
+	"${FILESDIR}"/patch/0004-Gentoo-libiberty-install-PIC-version-of-libiberty.a.patch
+	"${FILESDIR}"/patch/0005-Gentoo-opcodes-link-against-libbfd.la-for-rpath-deps.patch
+	"${FILESDIR}"/patch/0006-Gentoo-add-with-extra-soversion-suffix-option.patch
+	"${FILESDIR}"/patch/0007-Gentoo-ld-enable-new-dtags-by-default-for-linux-gnu-.patch
+	"${FILESDIR}"/patch/0008-Gentoo-Pass-hash-style-sysv-to-ld-in-the-testsuite.patch
+	"${FILESDIR}"/patch/9999-Gentoo-We-make-a-release.patch
+)
 
 src_prepare() {
 	local patchsetname
@@ -101,8 +113,8 @@ src_prepare() {
 	if [[ ! -z ${PATCH_VER} ]] || [[ ${PV} == 9999* ]] ; then
 		if ! use vanilla; then
 			einfo "Applying binutils patchset ${patchsetname}"
-			eapply "${WORKDIR}/patch"
-			einfo "Done."
+			# eapply "${WORKDIR}/patch"
+			# einfo "Done."
 		fi
 	fi
 
