@@ -1035,6 +1035,11 @@ app-office/texmacs
 >sys-devel/binutils-2.35
 <sys-devel/binutils-2.35
 
+# hold linux-headers 5.10.4 from https://github.com/T-head-Semi/xuantie-gnu-toolchain/tree/23fdf1028b63bb52ec0900f0021617e50c1f9af0/linux-headers/include,
+# mask other versions
+<sys-kernel/linux-headers-5.10.4
+>sys-kernel/linux-headers-5.10.4
+
 # Michael Orlitzky <mjo@gentoo.org> (2017-01-07)
 # This package has some dangerous quality and security issues, but
 # people may still find it useful. It is masked to prevent accidental
