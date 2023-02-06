@@ -30,7 +30,7 @@ REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 
 # We need newer kernel headers; we don't keep strict control of the exact
 # version here, just be safe and pull in the latest stable ones. bug #551248
-DEPEND=">=sys-kernel/linux-headers-5.15
+DEPEND=">=sys-kernel/linux-headers-5.10
 	python? ( ${PYTHON_DEPS} )"
 RDEPEND="${DEPEND}"
 BDEPEND="${DEPEND}
