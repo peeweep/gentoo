@@ -19,5 +19,6 @@ BDEPEND="${CATEGORY}/binutils"
 
 src_prepare() {
 	rm -v "${WORKDIR}/patch/23_all_disable-riscv32-ABIs.patch"
+	export EXTRA_ECONF="--disable-bootstrap"
 	toolchain_src_prepare
 }
