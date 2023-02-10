@@ -9,7 +9,7 @@ EAPI=7
 # We avoid Python 3.10 here _for now_ (it does work!) to avoid circular dependencies
 # on upgrades as people migrate to libxcrypt.
 # https://wiki.gentoo.org/wiki/User:Sam/Portage_help/Circular_dependencies#Python_and_libcrypt
-PYTHON_COMPAT=( python3_9 )
+PYTHON_COMPAT=( python3_{9..11} )
 TMPFILES_OPTIONAL=1
 
 inherit python-any-r1 prefix preserve-libs toolchain-funcs flag-o-matic gnuconfig \
@@ -836,7 +836,8 @@ src_unpack() {
 		EGIT_CHECKOUT_DIR=${S}
 		git-r3_src_unpack
 	else
-		unpack ${P}.tar.xz
+		unpack ${P}.zip
+		S="${WORKDIR}/glibc-${THEAD_COMMIT}"
 
 		cd "${WORKDIR}" || die
 		unpack glibc-${RELEASE_VER}-patches-${PATCH_VER}.tar.xz
@@ -856,9 +857,10 @@ src_prepare() {
 			patchsetname="${RELEASE_VER}-${PATCH_VER}"
 		fi
 		einfo "Applying Gentoo Glibc Patchset ${patchsetname}"
-		eapply "${WORKDIR}"/patches
+		eapply "${WORKDIR}"/patches/{0001-Disable-ldconfig-during-install.patch,0002-Revert-sysdeps-posix-getaddrinfo.c-gaih_inet-Only-us.patch,0003-Adapt-to-Gentoo-specific-etc-mail-aliases.patch,0004-Add-C.UTF-8-locale.patch,0005-Force-O0-in-conform-tests-to-survive-CC-changes.patch,0006-Fix-miscompilation-on-ia64-s-gcc-10.patch,0013-Enable-nss-systemd-in-nsswitch.conf.patch,0030-Add-comment-about-slowdowns-via-systemd-nsswitch-loo.patch,0050-Gentoo-nsswitch.conf-Add-nss-systemd-hook-also-to-sh.patch,0054-Revert-Gentoo-nsswitch.conf-Add-nss-systemd-hook-als.patch,0055-Revert-Add-comment-about-slowdowns-via-systemd-nsswi.patch,0056-Revert-Enable-nss-systemd-in-nsswitch.conf.patch,0121-x86-Copy-IBT-and-SHSTK-usable-only-if-CET-is-enabled.patch,0122-x86-Check-RTM_ALWAYS_ABORT-for-RTM-BZ-28033.patch,0123-x86-Black-list-more-Intel-CPUs-for-TSX-BZ-27398.patch,0124-x86-Use-CHECK_FEATURE_PRESENT-to-check-HLE-BZ-27398.patch,0125-x86-Remove-wcsnlen-sse4_1-from-wcslen-ifunc-impl-lis.patch,0126-x86-64-Test-strlen-and-wcslen-with-0-in-the-RSI-regi.patch,0127-Linux-Simplify-__opensock-and-fix-race-condition-BZ-.patch,0128-hurd-if_index-Explicitly-use-AF_INET-for-if-index-di.patch,0129-socket-Do-not-use-AF_NETLINK-in-__opensock.patch}
 		einfo "Done."
 	fi
+	eapply "${FILESDIR}"/2.35/glibc-2.35-make-4.4-MAKEFLAGS.patch
 
 	default
 
