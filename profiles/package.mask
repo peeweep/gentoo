@@ -1024,15 +1024,15 @@ app-office/texmacs
 >=sys-firmware/b43-firmware-6.30.163.46
 
 # hold gcc-10.2.0, mask other versions
->sys-devel/gcc-10.2.0
+>=sys-devel/gcc-10.2.1
 <sys-devel/gcc-10.2.0
 
 # hold glibc-2.33-r14, mask other versions
->sys-libs/glibc-2.33
+>=sys-libs/glibc-2.34
 <sys-libs/glibc-2.33
 
 # hold binutilss-2.35, mask other versions
->sys-devel/binutils-2.35
+>=sys-devel/binutils-2.35.1
 <sys-devel/binutils-2.35
 
 # hold linux-headers 5.10.4 from https://github.com/T-head-Semi/xuantie-gnu-toolchain/tree/23fdf1028b63bb52ec0900f0021617e50c1f9af0/linux-headers/include,
