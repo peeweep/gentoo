@@ -14,6 +14,7 @@ if [[ ${CTARGET} == ${CHOST} ]] ; then
 fi
 is_cross() { [[ ${CHOST} != ${CTARGET} ]] ; }
 
+THEAD_VER=2.6.1
 RPM=
 MY_PV=${PV}
 case ${PV} in
@@ -29,8 +30,8 @@ case ${PV} in
 	;;
 *)
 	# Normal upstream release
-	SRC_URI="mirror://gnu/gdb/${P}.tar.xz
-		ftp://sourceware.org/pub/gdb/releases/${P}.tar.xz"
+	SRC_URI="https://github.com/T-head-Semi/binutils-gdb/archive/tags/THead-${THEAD_VER}.tar.gz -> ${P}.tar.gz"
+	S=${WORKDIR}/binutils-gdb-tags-THead-${THEAD_VER}
 	;;
 esac
 
@@ -46,7 +47,7 @@ SRC_URI="${SRC_URI}
 LICENSE="GPL-2 LGPL-2"
 SLOT="0"
 if [[ ${PV} != 9999* ]] ; then
-	KEYWORDS="~alpha amd64 arm arm64 hppa ia64 m68k ~mips ppc ppc64 ~riscv s390 sh sparc x86 ~ppc-aix ~x64-cygwin ~amd64-linux ~x86-linux ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+	KEYWORDS="~riscv"
 fi
 IUSE="+client lzma multitarget nls +python +server source-highlight test vanilla xml"
 REQUIRED_USE="
@@ -82,12 +83,14 @@ BDEPEND="
 	app-arch/xz-utils
 	sys-apps/texinfo
 	client? (
-		virtual/yacc
+		app-alternatives/yacc
 		test? ( dev-util/dejagnu )
 		nls? ( sys-devel/gettext )
 	)"
 
-S=${WORKDIR}/${PN}-${MY_PV}
+PATCHES=(
+	"${FILESDIR}"/gdb-12.1-readline-8.2-build.patch
+)
 
 pkg_setup() {
 	use python && python-single-r1_pkg_setup
