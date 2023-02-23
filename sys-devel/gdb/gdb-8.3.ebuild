@@ -133,7 +133,7 @@ src_configure() {
 
 	if use server && ! use client ; then
 		# just configure+build in the gdbserver subdir to speed things up
-		cd gdb/gdbserver
+		cd gdbserver
 		myconf+=( --program-transform-name='' )
 	else
 		# gdbserver only works for native targets (CHOST==CTARGET).
@@ -182,7 +182,7 @@ src_configure() {
 
 src_install() {
 	if use server && ! use client; then
-		cd gdb/gdbserver || die
+		cd gdbserver || die
 	fi
 	default
 	if use client; then
@@ -213,7 +213,7 @@ src_install() {
 	# https://sourceware.org/ml/gdb-patches/2011-12/msg00915.html
 	# Only install if it exists due to the twisted behavior (see
 	# notes in src_configure above).
-	[[ -e gdb/gdbserver/gdbreplay ]] && dobin gdb/gdbserver/gdbreplay
+	[[ -e gdbserver/gdbreplay ]] && dobin gdbserver/gdbreplay
 
 	if use client ; then
 		docinto gdb
@@ -224,7 +224,7 @@ src_install() {
 	dodoc sim/{ChangeLog,MAINTAINERS,README-HACKING}
 	if use server ; then
 		docinto gdbserver
-		dodoc gdb/gdbserver/{ChangeLog,README}
+		dodoc gdbserver/{ChangeLog,README}
 	fi
 
 	if [[ -n ${PATCH_VER} ]] ; then
