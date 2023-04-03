@@ -1,4 +1,4 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -26,7 +26,10 @@ RDEPEND="
 	jemalloc? ( dev-libs/jemalloc:= )
 	jit? ( || ( sys-devel/gcc:* sys-devel/clang:* ) )
 	ssl? (
-		=dev-libs/openssl-1.1*:0=
+		|| (
+			dev-libs/openssl-compat:1.1.1
+			=dev-libs/openssl-1.1.1*
+		)
 	)
 	socks5? ( >=net-proxy/dante-1.1.13 )
 	systemtap? ( dev-util/systemtap )
