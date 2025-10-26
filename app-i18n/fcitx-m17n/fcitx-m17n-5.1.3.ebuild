@@ -5,6 +5,8 @@ EAPI=8
 
 MY_PN="fcitx5-m17n"
 
+CMAKE_QA_COMPAT_SKIP=1
+
 inherit cmake unpacker
 
 DESCRIPTION="m17n-provided input methods for Fcitx5"

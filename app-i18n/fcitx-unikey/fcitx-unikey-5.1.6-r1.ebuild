@@ -4,6 +4,9 @@
 EAPI=8
 
 MY_PN="fcitx5-unikey"
+
+CMAKE_QA_COMPAT_SKIP=1
+
 inherit cmake unpacker xdg
 
 DESCRIPTION="Unikey (Vietnamese Input Method) engine support for Fcitx"

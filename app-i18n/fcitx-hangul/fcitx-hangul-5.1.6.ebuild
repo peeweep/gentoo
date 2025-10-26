@@ -5,6 +5,8 @@ EAPI=8
 
 MY_PN="fcitx5-hangul"
 
+CMAKE_QA_COMPAT_SKIP=1
+
 inherit cmake unpacker xdg
 
 DESCRIPTION="Korean Hangul input method for Fcitx"

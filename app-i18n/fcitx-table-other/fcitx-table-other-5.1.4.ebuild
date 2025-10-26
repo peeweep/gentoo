@@ -5,6 +5,8 @@ EAPI=8
 
 MY_PN=fcitx5-table-other
 
+CMAKE_QA_COMPAT_SKIP=1
+
 inherit cmake unpacker xdg
 
 DESCRIPTION="Provides some other tables for Fcitx, fork from ibus-table-others, scim-tables"

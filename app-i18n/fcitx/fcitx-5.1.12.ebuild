@@ -5,6 +5,8 @@ EAPI=8
 
 MY_PN="fcitx5"
 
+CMAKE_QA_COMPAT_SKIP=1
+
 inherit cmake unpacker xdg
 
 DESCRIPTION="Fcitx 5 is a generic input method framework"

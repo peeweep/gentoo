@@ -4,6 +4,9 @@
 EAPI=8
 
 MY_PN="fcitx5-chinese-addons"
+
+CMAKE_QA_COMPAT_SKIP=1
+
 inherit cmake unpacker xdg
 
 DESCRIPTION="Addons related to Chinese, including IME previous bundled inside fcitx4"

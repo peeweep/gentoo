@@ -3,6 +3,8 @@
 
 EAPI=8
 
+CMAKE_QA_COMPAT_SKIP=1
+
 inherit cmake unpacker
 
 DESCRIPTION="Input method development support for xcb"

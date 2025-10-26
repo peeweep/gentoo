@@ -5,6 +5,8 @@ EAPI=8
 
 MY_PN="fcitx5-gtk"
 
+CMAKE_QA_COMPAT_SKIP=1
+
 inherit cmake gnome2-utils unpacker xdg
 
 DESCRIPTION="Gtk im module for fcitx5 and glib based dbus client library"

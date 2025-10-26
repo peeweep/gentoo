@@ -3,6 +3,8 @@
 
 EAPI=8
 
+CMAKE_QA_COMPAT_SKIP=1
+
 inherit cmake unpacker
 
 DESCRIPTION="Fcitx5 Next generation of fcitx"

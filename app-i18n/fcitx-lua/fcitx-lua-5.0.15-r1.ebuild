@@ -7,6 +7,8 @@ LUA_COMPAT=( lua5-{3,4} )
 
 MY_PN="fcitx5-lua"
 
+CMAKE_QA_COMPAT_SKIP=1
+
 inherit cmake lua-single xdg unpacker
 
 DESCRIPTION="Lua support for fcitx"
